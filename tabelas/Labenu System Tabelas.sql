@@ -12,7 +12,7 @@ create table labenu_system_estudante (
 	id varchar(255) primary key,
     nome varchar(255) not null,
     email varchar(255)not null unique,
-    date_nasc date not null,
+    data_nasc date not null,
     turma_id varchar(255) not null,
     foreign key (turma_id) references labenu_system_turma(id)
 );
@@ -34,7 +34,7 @@ create table labenu_system_docente (
 	id varchar(255) primary key,
     nome varchar(255) not null,
     email varchar(255)not null unique,
-    date_nasc date not null,
+    data_nasc date not null,
     turma_id varchar(255) not null,
     foreign key (turma_id) references labenu_system_turma(id)
 );
