@@ -11,6 +11,7 @@ export class Estudante{
     this.nome = nome
     this.email = email
     this.data_nasc = data_nasc
+    this.turma_id = turma_id
     this.hobbies = hobbies
    }
 
@@ -28,6 +29,10 @@ public getEmail() {
 
 public getData_nasc() {
     return this.data_nasc
+}
+
+public getTurma_id(){
+    return this.turma_id
 }
 
 public getHobbies() {

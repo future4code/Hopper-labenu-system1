@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { Estudante } from "../classe/Estudante"
 import connection from "../database/connection"
 import { TABLE_ESTUDANTE } from "../database/tabelas"
 
@@ -9,19 +10,27 @@ export const createEstudante = async (req: Request, res: Response) => {
     let data = data_nasc.split("/")
 
     let data_formatada = data.reverse().join("-")
+    let hobby: [] = []
 
-    const id = Date.now()
+    const estudante = new Estudante (
+        Date.now().toString(),
+        nome,
+        email,
+        data_formatada,
+        turma_id,
+        hobby
+    )
 
-    const estudante = {
-        id: id,
-        nome: nome,
-        email: email,
-        data_nasc: data_formatada,
-        turma_id: turma_id
+    const estudante_banco = {
+        id: estudante.getId(),
+        nome: estudante.getNome(),
+        email: estudante.getEmail(),
+        data_nasc: estudante.getData_nasc(),
+        turma_id: estudante.getTurma_id()
     }
 
     try {
-        await connection(TABLE_ESTUDANTE).insert(estudante)
+        await connection(TABLE_ESTUDANTE).insert(estudante_banco)
 
         res.status(200).send("Estudante adicionado com sucesso!")
         
