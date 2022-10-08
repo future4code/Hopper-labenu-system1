@@ -1,17 +1,16 @@
-// Alterar o modulo da turma, informações necessárias: id da turma e nomvo módulo.
-
 import { Request, Response } from "express"
-import connection from "../database/connection"
-import { TABLE_TURMA } from "../database/tabelas"
+import { TurmaDatabase } from "../database/TurmaDatabase"
 
 export const patchTurma = async (req: Request, res: Response) => {
     let errorCode = 400
-    const {turma_id, novo_modulo} = req.body
     try {
-        await connection(TABLE_TURMA).select("*").where("id", `${turma_id}`)
+        const {turma_id, novo_modulo} = req.body
+        if ( !turma_id || !novo_modulo) {
+            throw new Error("Informações incompletas")
+        }
 
-        await connection(TABLE_TURMA).where("id","=", `${turma_id}`).update({modulo: novo_modulo})
-
+        const turmaDatabase = new TurmaDatabase()
+        await turmaDatabase.patchTurma(turma_id, novo_modulo)
         res.status(200).send("Módulo alterado com sucesso!")
 
     } catch (error) {

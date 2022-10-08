@@ -1,17 +1,16 @@
-// Alterar o aluno de turma, informações necessárias: id da turma e id do aluno.
-
 import { Request, Response } from "express"
-import connection from "../database/connection"
-import { TABLE_ESTUDANTE } from "../database/tabelas"
+import { UserDatabase } from "../database/UserDatabase"
 
 export const patchEstudante = async (req: Request, res: Response) => {
     let errorCode = 400
-    const {estudante_id, nova_turma} = req.body
     try {
-        await connection(TABLE_ESTUDANTE).select("*").where("id", `${estudante_id}`)
+        const {estudante_id, nova_turma} = req.body
+        if ( !estudante_id || !nova_turma) {
+            throw new Error("Informações incompletas")
+        }
 
-        await connection(TABLE_ESTUDANTE).where("id","=", `${estudante_id}`).update({turma_id: nova_turma})
-
+        const userDatabase = new UserDatabase()
+        await userDatabase.patchEstudante(estudante_id, nova_turma)
         res.status(200).send("Turma alterada com sucesso!")
 
     } catch (error) {

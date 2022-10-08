@@ -1,15 +1,17 @@
 import { Request, Response } from "express"
-import connection from "../database/connection"
-import { TABLE_DOCENTE } from "../database/tabelas"
-
+import { UserDatabase } from "../database/UserDatabase"
 
 export const patchDocente = async (req: Request, res: Response) => {
     let errorCode = 400
-    const {docente_id, nova_turma} = req.body
     try {
-        await connection(TABLE_DOCENTE).select("*").where("id", `${docente_id}`)
+        const {docente_id, nova_turma} = req.body
 
-        await connection(TABLE_DOCENTE).where("id","=", `${docente_id}`).update({turma_id: nova_turma})
+        if ( !docente_id || ! nova_turma) {
+            throw new Error("Informações incompletas")
+        }
+
+        const userDatabase = new UserDatabase()
+        await userDatabase.patchDocente(docente_id, nova_turma)
 
         res.status(200).send("Turma alterada com sucesso!")
 
