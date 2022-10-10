@@ -10,6 +10,9 @@ import { patchEstudante } from './endpoints/patchEstudante'
 import { createDocente } from './endpoints/createDocente'
 import { getDocente } from './endpoints/getDocente'
 import { patchDocente } from './endpoints/patchDocente'
+import { addEspecialidade } from './endpoints/addEspecialidade'
+import { addHobby } from './endpoints/addHobby'
+import { getIdade } from './endpoints/getIdade'
 
 dotenv.config()
 const app = express()
@@ -20,9 +23,12 @@ app.use(cors())
 app.post("/turma", createTurma)
 app.post("/docente", createDocente)
 app.post("/estudante", createEstudante)
+app.post("/especialidade", addEspecialidade)
+app.post("/hobby", addHobby)
 app.get("/turma", getTurma)
 app.get("/estudante", getEstudante)
 app.get("/docente", getDocente)
+app.get("/idade", getIdade)
 app.patch("/turma", patchTurma)
 app.patch("/estudante", patchEstudante)
 app.patch("/docente",patchDocente)

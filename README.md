@@ -1,33 +1,30 @@
-## LabenuSystem:
+## LabenuSystem1:
 
-Você estuda na Labenu_ há tanto tempo que já parecem anos, não é? Então, hoje, vamos pedir para criar um sistema que represente o básico da nossa organização. 
+Integrantes: 
+    - Madson Pereira;
+    - Natália Amaral;
+    - Natália Amorim.
 
-Ele deve possuir, ao menos, as 3 entidades importantes:
+Funcionalidades:
+    - Criar:
+        - Turma;
+        - Docente;
+        - Estudante.
 
-1. Estudantes 
+    - Adicionar: 
+        - Especialidades aos Docentes;
+        - Hobbies aos Estudantes.
 
-    Representa estudantes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e os principais hobbies dele. 
+    - Buscar:
+        - Todos as Turmas;
+        - Todos os Docentes;
+        - Todos os Estudantes;
+        - Idade do Estudante pelo id.
 
-2. Docente
+    - Alterar:
+        - Turma de módulo;
+        - Docente de Turma;
+        - Estudante de Turma.
 
-    Representa docentes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e todas as especialidades dele. Há 7 especialidades: React, Redux, CSS, Testes, Typescript, Programação Orientada a Objetos e Backend
-
-3. Turma
-
-    Toda turma é composta das seguintes características: id, nome, data de início, data de término, lista de professores responsáveis, uma lista de alunos e módulo atual em que a turma está.
-
-    O módulo pode assumir os valores de 1 a 7 ou `undefined`, indicando que as aulas dessa turma ainda não começaram. Para esse exercício, vamos considerar que existam dois tipos de turma: integral ou noturna. Há uma restrição para o nome das turmas noturnas: tem que terminar com `-na-night`.
-
-As funcionalidades básicas são:
-
-→ Criar estudante;
-
-→ Criar docente;
-
-→ Criar turma;
-
-→ Adicionar estudante na turma;
-
-→ Adicionar docente na turma;
-
-→ Pegar a idade de algum estudante a partir do id
+Documentação:
+    - Link Postman: https://documenter.getpostman.com/view/21028596/2s83zdwmCs
